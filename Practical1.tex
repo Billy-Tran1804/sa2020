@@ -58,20 +58,48 @@
 \section{BASH, PIPE and I/O Redirection}
 
 \begin{itemize}
-	\item List everyone logged in and save the list in a file called "users" in your own home directory.
+	\item 1. List everyone logged in and save the list in a file called "users" in your own home directory.
+	
 	Answer: w
-	\item List all processes that are running and add this list to the end of the "users" file.
+	\item 2. List all processes that are running and add this list to the end of the "users" file.
+	
 	Answer: ps A
-	\item List everyone who is logged on sorted by their username.
+	\item 3. List everyone who is logged on sorted by their username.
+	
 	Answer: w | sort
+	\item 4. Count number of session each logged in user, sorted by this number in descending order.
+	
+	Answer: w | sort -r
+	\item 5. Show content of the first and last 3 lines of the file "/etc/fstab"
+	
+	Answer:  
+	head -3 /etc/fstab
+	tail -3 /etc/fstab
+	
+	\item 6. Retrieve line number 5 to 10 from the file "/etc/fstab" and write these files into a new file "extract.txt"
+	
+	Answer: sed -n '5, 10p' /etc/fstab
+	\item 7. List all files in current directory, recursively, to which the user has full permission.
+	
+	Answer: ls -rf
+	\item 8. Compare two files and show percentage of similarities between them.
+	
+	Answer: wdiff -s2 file1.txt file2.txt
+	\item 9. Find all files in current directory, recursively, that are at least 90 percent similar
+	
+	Answer:  I am working on.
 \end{itemize}
 
 \section{Appendix}
 
 \begin{itemize}
-	\item .
-	\item .
-	\item .
+	\item Question 1.
+	
+	
+	\item Question 2.
+	
+	
+	\item Question 3.
 \end{itemize}
 
 %%% End document
