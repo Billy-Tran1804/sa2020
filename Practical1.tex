@@ -84,10 +84,20 @@
 	Answer: ls -rf
 	\item 8. Compare two files and show percentage of similarities between them.
 	
-	Answer: wdiff -s2 file1.txt file2.txt
+	Answer: wdiff -s file1.txt file2.txt
 	\item 9. Find all files in current directory, recursively, that are at least 90 percent similar
 	
-	Answer:  I am working on.
+	Answer:  
+	similarites
+	- calc the difference
+	 + diff
+	 + count the diff lines := diffLines
+    - count A's lines := aLines
+    - count B's lines := bLines
+    diffPercent = diffLines / (aLines + bLines) * 100 * 2
+    - similarity = 100 - diffPercent
+    
+   
 \end{itemize}
 
 \section{Appendix}
