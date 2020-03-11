@@ -60,13 +60,15 @@
 \begin{itemize}
 	\item 1. List everyone logged in and save the list in a file called "users" in your own home directory.
 	
-	Answer: w
+	Answer: Using the w command to find users who logged into the system. We can use "who -u" to list users logged in.
 	\item 2. List all processes that are running and add this list to the end of the "users" file.
 	
-	Answer: ps A
+	Answer: Using "ps A" command to list all processes that are running.
+	
 	\item 3. List everyone who is logged on sorted by their username.
 	
 	Answer: w | sort
+	
 	\item 4. Count number of session each logged in user, sorted by this number in descending order.
 	
 	Answer: w | sort -r
@@ -76,26 +78,56 @@
 	head -3 /etc/fstab
 	tail -3 /etc/fstab
 	
+	My Macbook OS does not have those files so I could not run the command sucessfully.
+	
+	The format to show content of any file is: head [or] tail - [n] "file name".
+	
 	\item 6. Retrieve line number 5 to 10 from the file "/etc/fstab" and write these files into a new file "extract.txt"
 	
-	Answer: sed -n '5, 10p' /etc/fstab
+	Answer: 
+	In order to retrieve the content of a file, we can use several Linux commands such as "cat", "more", "less", "awk", or sed ("cat" is usually used for concatenate files).
+	In these situation I prefer the command "sed". The format of this command as follows: sed -n '1, \$p' file.
+	
+	sed -n '5, 10p' /etc/fstab
+	
+	to write these files into a new file "extract.txt" I use the command: 
+	
+	
 	\item 7. List all files in current directory, recursively, to which the user has full permission.
 	
-	Answer: ls -rf
+	Answer: The command ls will help to list all files in the curent directory. 
+	ls -rf
+	
 	\item 8. Compare two files and show percentage of similarities between them.
 	
-	Answer: wdiff -s file1.txt file2.txt
+	Answer: 
+	
+	diffLines=`diff \$1 \$2 | egrep "\^(>|<)" | wc -l`
+	
+	aLines=`wc -l < \$1`
+	
+	bLines=`wc -l < \$2`
+	
+	if [ \$ aLines -eq 0 ] \&\& [ \$ bLines -eq 0 ]; then
+	
+		exit 0
+		
+	fi
+	
+	diffPer=`echo "\$ diffLines * 100 * 2 / (\$ aLines + \$ bLines)" | bc`
+	
+	similar=`echo "100-\$ diffPer" | bc`
+	
+	if [ "\$ similar" -gt 90 ]; then
+	
+		echo Similarity \$ similar: \$1 \$2
+		
+	fi	
+	
 	\item 9. Find all files in current directory, recursively, that are at least 90 percent similar
 	
 	Answer:  
-	similarites
-	- calc the difference
-	 + diff
-	 + count the diff lines := diffLines
-    - count A's lines := aLines
-    - count B's lines := bLines
-    diffPercent = diffLines / (aLines + bLines) * 100 * 2
-    - similarity = 100 - diffPercent
+	
     
    
 \end{itemize}
@@ -105,11 +137,68 @@
 \begin{itemize}
 	\item Question 1.
 	
+	16:32  up  5:43, 2 users, load averages: 2.01 1.66 1.68
+	USER     TTY      FROM              LOGIN@  IDLE WHAT
+	BillyTran console  -                11:06    5:25 -
+	BillyTran s001     -                16:32       - w
+	BillyTran@Trans-MacBook-Air sa2020 % who -u
+	BillyTran console  Mar 11 09:36 02:08 	   178
+	BillyTran ttys000  Mar 11 11:02   .   	  1519
 	
 	\item Question 2.
-	
+	1013   ??  Ss     0:02.32 /Applications/Dropbox.app/Contents/PlugIns/garcon.ap
+	 1017   ??  S      0:00.27 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1018   ??  S      0:00.41 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1024   ??  S      0:00.56 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1025   ??  S      0:00.76 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1077   ??  S      0:00.18 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1078   ??  S      0:00.19 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1080   ??  S      0:00.18 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1083   ??  S      0:00.19 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1084   ??  S      0:00.09 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1088   ??  S      0:00.13 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1089   ??  S      0:00.13 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1090   ??  S      0:00.10 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1091   ??  S      0:00.10 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1093   ??  S      0:00.33 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1094   ??  S      0:00.78 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1095   ??  S      0:00.82 /System/Library/Frameworks/CoreServices.framework/Fr
+	 1111   ??  S      0:05.23 /System/Applications/Utilities/Terminal.app/Contents
+	 1117   ??  S      0:02.73 /Applications/Sublime Text.app/Contents/MacOS/Sublim
+	 1118   ??  Ss     0:00.47 /Applications/Dropbox.app/Contents/PlugIns/garcon.ap
+	 1119   ??  S      0:00.48 /Applications/Sublime Text.app/Contents/MacOS/plugin
+	 1128   ??  Ss     0:00.05 /usr/sbin/ocspd
+	 1129   ??  S      0:00.13 /System/Library/PrivateFrameworks/DistributedEvaluat
+	 1112 s001  Ss     0:00.05 login -pf BillyTran
+	 1113 s001  S      0:00.08 -zsh
+	 1131 s001  R+     0:00.01 ps A
 	
 	\item Question 3.
+	
+	BillyTran@Trans-MacBook-Air sa2020 % w | sort 
+	11:46  up  2:15, 2 users, load averages: 1.89 1.82 1.75
+	BillyTran console  -                 9:36    2:09 -
+	BillyTran s000     -                11:02       - sort
+	USER     TTY      FROM              LOGIN@  IDLE WHAT
+	
+	\item Question 4.
+	USER     TTY      FROM              LOGIN@  IDLE WHAT
+	BillyTran s000     -                11:02       - sort -r
+	BillyTran console  -                 9:36    6:51 -
+	16:28  up  6:56, 2 users, load averages: 1.24 1.60 1.77
+	
+	\item Question 6.
+	.
+	..
+	Practical1.pdf
+	Practical1.tex
+	Qestion 1: BillyTran@Trans-MacBook-Air ~ % w
+	Practical1.synctex.gz
+	README.md
+	.git
+	Practical1.aux
+	Practical1.log
+	
 \end{itemize}
 
 %%% End document
