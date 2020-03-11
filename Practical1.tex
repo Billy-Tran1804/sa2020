@@ -1,0 +1,106 @@
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+
+\usepackage[english]{babel}															% English language/hyphenation
+\usepackage[protrusion=true,expansion=true]{microtype}	
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[pdftex]{graphicx}	
+\usepackage{url}
+
+
+%%% Custom sectioning
+\usepackage{sectsty}
+\allsectionsfont{\centering \normalfont\scshape}
+
+
+%%% Custom headers/footers (fancyhdr package)
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}											% No page header
+\fancyfoot[L]{}											% Empty 
+\fancyfoot[C]{}											% Empty
+\fancyfoot[R]{\thepage}									% Pagenumbering
+\renewcommand{\headrulewidth}{0pt}			% Remove header underlines
+\renewcommand{\footrulewidth}{0pt}				% Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}		% Equationnumbering: section.eq#
+\numberwithin{figure}{section}			% Figurenumbering: section.fig#
+\numberwithin{table}{section}				% Tablenumbering: section.tab#
+
+
+%%% Maketitle metadata
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\title{
+		%\vspace{-1in} 	
+		\usefont{OT1}{bch}{b}{n}
+		\normalfont \normalsize \textsc{University of Science and Technology of Hanoi \\ Master ICT} \\ [25pt]
+		\horrule{0.5pt} \\[0.4cm]
+		\huge Practical 1 \\
+		\horrule{2pt} \\[0.5cm]
+}
+\author{
+		\normalfont 								\normalsize
+        St. Tran Quy Ban\\[-3pt]		\normalsize
+        \today
+}
+\date{}
+
+
+%%% Begin document
+\begin{document}
+\maketitle
+
+\section{BASH, PIPE and I/O Redirection}
+
+\begin{itemize}
+	\item 1. List everyone logged in and save the list in a file called "users" in your own home directory.
+	
+	Answer: w
+	\item 2. List all processes that are running and add this list to the end of the "users" file.
+	
+	Answer: ps A
+	\item 3. List everyone who is logged on sorted by their username.
+	
+	Answer: w | sort
+	\item 4. Count number of session each logged in user, sorted by this number in descending order.
+	
+	Answer: w | sort -r
+	\item 5. Show content of the first and last 3 lines of the file "/etc/fstab"
+	
+	Answer:  
+	head -3 /etc/fstab
+	tail -3 /etc/fstab
+	
+	\item 6. Retrieve line number 5 to 10 from the file "/etc/fstab" and write these files into a new file "extract.txt"
+	
+	Answer: sed -n '5, 10p' /etc/fstab
+	\item 7. List all files in current directory, recursively, to which the user has full permission.
+	
+	Answer: ls -rf
+	\item 8. Compare two files and show percentage of similarities between them.
+	
+	Answer: wdiff -s2 file1.txt file2.txt
+	\item 9. Find all files in current directory, recursively, that are at least 90 percent similar
+	
+	Answer:  I am working on.
+\end{itemize}
+
+\section{Appendix}
+
+\begin{itemize}
+	\item Question 1.
+	
+	
+	\item Question 2.
+	
+	
+	\item Question 3.
+\end{itemize}
+
+%%% End document
+\end{document}
