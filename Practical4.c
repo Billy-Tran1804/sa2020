@@ -1,17 +1,20 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
 
 int pid;
 void handler (int signal_num) {
     printf("Signal %d => ", signal_num);
     if (signal_num == SIGTSTP) {
-        signal(SIGTSTP, handler);
+        pid = SIGTERM;
         return 0;
     }
 }
 int main () {
-     while(1) {
+
+    signal(SIGTSTP, handler);
+    while(1) {
     char str[100];
     printf("Please input value: ");
     scanf("%s",str);
