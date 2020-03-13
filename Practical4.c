@@ -7,8 +7,8 @@ int pid;
 void handler (int signal_num) {
     printf("Signal %d => ", signal_num);
     if (signal_num == SIGTSTP) {
-        pid = SIGTERM;
-        return 0;
+        kill(pid,SIGTERM);
+        exit(0);
     }
 }
 int main () {
@@ -27,10 +27,9 @@ int main () {
     if (pid == 0) 
     {
         printf("I am child after fork() \n");        
-        char *argv[3];
-        argv[0] = "ls";
-        argv[1] = "-la";
-        argv[2] = NULL;
+        char *argv[2];
+        argv[0] = "SIGTSTP";        
+        argv[1] = NULL;
         execvp(str, argv);
         
     }    
