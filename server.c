@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     unsigned int clen;
     pthread_t input_thread;
 
-    char r[100];
+    char rBuff[100];
 
     // create the socket
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -46,9 +46,9 @@ int main(int argc, char *argv[]) {
         printf("server> accepting incoming connection\n");
         clientfd = accept(sockfd, (struct sockaddr *) &saddr, &clen);
         // TODO: communicate with connected client here
-        memset(r, '\0' , sizeof(r));
-        recv(clientfd, r, sizeof(r),0);
-        printf("%s\n", r);
+        memset(rBuff, '\0' , sizeof(rBuff));
+        recv(clientfd, rBuff, sizeof(rBuff),0);
+        printf("%s\n", rBuff);
 
 
     }

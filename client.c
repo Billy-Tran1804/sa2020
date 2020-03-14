@@ -14,6 +14,7 @@ int main(int argc, char* argv[]) {
     int sockfd;
     unsigned int port = 8784;
     char s[100];
+    char sBuff[1000];
     
     if (argc > 1) {
         memcpy(s, argv[1], strlen(argv[1]) + 1);
@@ -54,8 +55,10 @@ int main(int argc, char* argv[]) {
     while (1) {
         // TODO: add logics to communicate with server
         memset(s, '0', sizeof(s));
-        printf(s, "Hello, are you ok? %d");
-        send(sockfd, s, strlen(s),0);
+        printf("Please input value: ");
+        scanf("%s",sBuff);        
+        printf("%s",sBuff);
+        send(sockfd, sBuff, strlen(sBuff),0);
     }
     close(sockfd);
 }
